@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N次関数フィット計算機</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="main-header">
+            <h1>N次関数 計算機</h1>
+            <p class="description">
+                入力されたN個の点を通る、N-1次関数の式を求めます。
+                内部計算は全て分数で行い、数学的に正確な結果を導き出します。
+            </p>
+        </header>
+
+        <section class="card">
+            <h2>1. データ入力</h2>
+            <!-- ★★★ ここの構造を変更 ★★★ -->
+            <div class="csv-import-section">
+                <input type="file" id="csv-file-input" class="file-input-hidden" accept=".csv">
+                <label for="csv-file-input" class="btn btn-secondary">CSVファイルを選択</label>
+                <small>※ 形式: 1行に1点 (x,y)。例: `3.5, 7/2`</small>
+            </div>
+            <div class="table-wrapper">
+                <table id="input-table">
+                    <thead>
+                        <tr>
+                            <th class="col-x">x 座標</th>
+                            <th class="col-y">y 座標</th>
+                            <th class="col-action">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- JavaScriptで動的に行が追加されます -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-controls">
+                <button id="add-row-btn" class="btn btn-secondary" onclick="addRow()">+ 行を追加</button>
+            </div>
+        </section>
+
+        <!-- (以降のHTMLは変更なし) -->
+        <section class="card">
+            <h2>2. 計算情報</h2>
+            <p id="estimation-info"></p>
+        </section>
+        
+        <section class="card">
+            <h2>3. 計算実行と結果</h2>
+            <button id="calculate-btn" class="btn btn-primary" onclick="calculate()">計算を実行する</button>
+
+            <div class="output-format-selector">
+                <strong>表示形式:</strong>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="output-format" value="fraction" onchange="setOutputFormat()" checked>
+                        <span>分数 (高精度)</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="output-format" value="decimal" onchange="setOutputFormat()">
+                        <span>小数 (近似値)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="result-output">
+                <h3>通常の数式</h3>
+                <div class="output-box-wrapper">
+                    <p id="result-plain"></p>
+                    <button class="copy-btn btn" onclick="copyToClipboard('result-plain', this)">コピー</button>
+                </div>
+            </div>
+    
+            <div class="result-output">
+                <h3>LaTeX 形式</h3>
+                <div class="output-box-wrapper">
+                    <p id="result-latex"></p>
+                    <button class="copy-btn btn" onclick="copyToClipboard('result-latex', this)">コピー</button>
+                </div>
+            </div>
+    
+            <div class="result-output">
+                <h3>Desmos 形式</h3>
+                <div class="output-box-wrapper">
+                    <p id="result-desmos"></p>
+                    <button class="copy-btn btn" onclick="copyToClipboard('result-desmos', this)">コピー</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

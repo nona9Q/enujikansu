@@ -1,0 +1,179 @@
+/* --- 変数定義と基本スタイル --- */
+:root {
+    --primary-color: #17a2b8;
+    --primary-hover-color: #138496;
+    --primary-shadow-color: rgba(23, 162, 184, 0.2);
+    --secondary-color: #6c757d;
+    --secondary-hover-color: #5a6268;
+    --danger-color: #dc3545;
+    --danger-hover-color: #c82333;
+    --background-color: #f0f2f5;
+    --card-background-color: #ffffff;
+    --text-color: #343a40;
+    --text-muted-color: #6c757d;
+    --border-color: #dee2e6;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --border-radius: 6px; /* ★★★ 少し丸みを調整 ★★★ */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- コンテナとヘッダー --- */
+.container { max-width: 800px; margin: 40px auto; padding: 20px; }
+.main-header { text-align: center; margin-bottom: 40px; }
+.main-header h1 { font-size: 2.5rem; color: var(--text-color); margin-bottom: 10px; }
+.description { font-size: 1.1rem; color: var(--text-muted-color); max-width: 600px; margin: 0 auto; }
+
+/* --- カードスタイル --- */
+.card {
+    background-color: var(--card-background-color);
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* --- ★★★ 汎用ボタンスタイル ★★★ --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 12px;
+    margin-bottom: 25px;
+}
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px var(--primary-shadow-color);
+}
+
+.btn-secondary {
+    background-color: #e9ecef;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+    background-color: #d3d9df;
+}
+
+/* --- テーブル --- */
+.table-wrapper { overflow-x: auto; }
+#input-table { width: 100%; border-collapse: collapse; }
+#input-table th, #input-table td { padding: 12px; text-align: center; border-bottom: 1px solid var(--border-color); }
+#input-table th { background-color: #f8f9fa; font-weight: 600; color: var(--text-muted-color); }
+#input-table td { vertical-align: middle; }
+.table-controls { margin-top: 15px; text-align: center; }
+
+/* --- 入力フィールド --- */
+#input-table input[type="text"] {
+    width: 100%;
+    min-width: 100px;
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    text-align: center;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+#input-table input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-shadow-color);
+}
+
+/* --- ★★★ 削除ボタンのスタイル ★★★ --- */
+.delete-btn {
+    background-color: #f8f9fa;
+    color: var(--text-muted-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.delete-btn:hover {
+    background-color: var(--danger-color);
+    color: white;
+    border-color: var(--danger-color);
+}
+
+/* --- ★★★ CSVファイル入力のカスタムスタイル ★★★ --- */
+.csv-import-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.file-input-hidden {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.csv-import-section small {
+    color: var(--text-muted-color);
+}
+
+/* --- 計算結果セクション --- */
+#estimation-info {
+    font-weight: 500;
+    color: var(--primary-color);
+    background-color: rgba(23, 162, 184, 0.1);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    min-height: 42px;
+}
+.output-format-selector { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
+.radio-group { display: flex; gap: 10px; }
+.radio-group label { display: inline-flex; align-items: center; cursor: pointer; background-color: #f8f9fa; padding: 8px 15px; border-radius: 50px; border: 1px solid var(--border-color); transition: all 0.2s; }
+.radio-group input[type="radio"] { display: none; }
+.radio-group input[type="radio"]:checked + span { font-weight: 600; }
+.radio-group label:has(input:checked) { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
+.result-output h3 { font-size: 1rem; font-weight: 600; color: var(--text-muted-color); margin-bottom: 5px; }
+.output-box-wrapper { display: flex; align-items: center; padding: 15px; background-color: #f8f9fa; border-radius: var(--border-radius); font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 1.1rem; min-height: 57px; }
+.output-box-wrapper p { flex-grow: 1; word-break: break-all; }
+
+/* --- ★★★ コピーボタンのスタイル ★★★ --- */
+.copy-btn {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-left: 15px;
+    padding: 8px 15px;
+    border-radius: var(--border-radius);
+    min-width: 80px;
+}
+.copy-btn:hover {
+    background-color: var(--secondary-hover-color);
+}
